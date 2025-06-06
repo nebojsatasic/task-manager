@@ -36,18 +36,23 @@ pipeline {
                             find . -type d -exec chmod 755 {} +
                             find . -type f -exec chmod 644 {} +
 
-                            # Change ownership for writable dirs and SQLite file
+                            # Change ownership for writable dirs
                             chown -R www-data:www-data storage bootstrap/cache
-                            chown www-data:www-data database/database.sqlite
 
                             # Set write permissions for storage & cache
                             chmod -R 775 storage bootstrap/cache
+
+                            # Change ownership of the environment file and database so Jenkins can read/write them
+                            sudo chown jenkins:jenkins .env database/database.sqlite
 
                             # Set correct file permission for SQLite DB
                             chmod 664 database/database.sqlite
 
                             # Secure the environment file
                             chmod 640 .env
+
+                            # Change ownership for SQLite file
+                            chown www-data:www-data database/database.sqlite
 
                             # Make artisan executable
                             chmod 755 artisan
