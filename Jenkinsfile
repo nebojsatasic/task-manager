@@ -29,8 +29,6 @@ pipeline {
                     // Navigate to the deploy directory (source folder)
                     dir("${DEPLOY_DIR}/src") {
                         sh '''
-                        while sleep 30; do echo "Still running..."; done &
-                        trap "kill $!" EXIT
                             # Install Laravel app
                             composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
