@@ -19,14 +19,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    # Copy files from the workspace to the web directory, excluding .git and .gitignore
+                    // Copy files from the workspace to the web directory, excluding .git and .gitignore
                     sh 'sudo rsync -av --delete --exclude=".git" --exclude=".gitignore" ${WORKSPACE}/ ${DEPLOY_DIR}/'
 
-                    # Copy files containing sensitive data from the secure location to ensure that sensitive information is not exposed in the Git repository
+                    // Copy files containing sensitive data from the secure location to ensure that sensitive information is not exposed in the Git repository
                     sh 'sudo cp /var/secure_data/task_manager/.env ${DEPLOY_DIR}/src/.env'
                     sh 'sudo cp /var/secure_data/task_manager/database.sqlite ${DEPLOY_DIR}/src/database/database.sqlite'
 
-                    # Navigate to the deploy directory (source folder)
+                    // Navigate to the deploy directory (source folder)
                     dir("${DEPLOY_DIR}/src") {
                         sh '
                             # Install Laravel app
