@@ -43,7 +43,7 @@ pipeline {
                             chmod -R 775 storage bootstrap/cache
 
                             # Change ownership of the environment file and database so Jenkins can read/write them
-                            sudo chown jenkins:jenkins .env database/database.sqlite
+                            chown jenkins:jenkins .env database/database.sqlite
 
                             # Set correct file permission for SQLite DB
                             chmod 664 database/database.sqlite
