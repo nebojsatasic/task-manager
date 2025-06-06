@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // /Clone or pull from GitHub repository
+                    // Clone or pull from GitHub repository
                     git url: "${GITHUB_REPO}", credentialsId: '', branch: 'main'
                 }
             }
@@ -28,7 +28,7 @@ pipeline {
 
                     // Navigate to the deploy directory (source folder)
                     dir("${DEPLOY_DIR}/src") {
-                        sh '
+                        sh '''
                             # Install Laravel app
                             composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
@@ -58,7 +58,7 @@ pipeline {
 
                             # Not used in this API-only project, but included to show awareness of Blade view caching.
                             # php artisan view:cache --no-interaction --quiet
-                        '
+                        '''
                     }
                 }
             }
