@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Clone or pull from GitHub repository
+                    // /Clone or pull from GitHub repository
                     git url: "${GITHUB_REPO}", credentialsId: '', branch: 'main'
                 }
             }
