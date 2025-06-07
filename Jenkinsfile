@@ -30,7 +30,7 @@ pipeline {
                     dir("${DEPLOY_DIR}/src") {
                         sh '''
                             # Install Laravel app
-                            composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+                            #composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
 
                             # Set permissions (755 for folders and 644 for files)
                             sudo find . -type d -exec chmod 755 {} +
